@@ -40,7 +40,7 @@ public class SecurityConfigurer   {
     }
 
    /* @Bean
-    public WebMvcConfigurer corsConfigurer()
+    public WebMvCConfigurer corsConfigurer()
     {
         return new WebMvcConfigurer() {
             @Override
