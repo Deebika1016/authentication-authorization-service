@@ -28,15 +28,6 @@ public class ExceptionControllerAdvisor {
         return errorDto;
     }
 
-   /* @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-    public ErrorDto handleHttpRequestMethodNotSupportedException(
-            HttpRequestMethodNotSupportedException ex) {
-        ErrorDto errorDto = new ErrorDto();
-        errorDto.setCode(METHOD_NOT_ALLOWED_CODE);
-        errorDto.setMessage(METHOD_NOT_ALLOWED_MESSAGE);
-        return errorDto;
-    } */
 
     @ExceptionHandler(InvalidCredentialsException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)

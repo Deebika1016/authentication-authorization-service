@@ -1,8 +1,5 @@
 package com.maveric.authenticationauthorizationservice.constants;
 
-import java.time.LocalDateTime;
-
-
 public class Constants {
 
     private Constants() {

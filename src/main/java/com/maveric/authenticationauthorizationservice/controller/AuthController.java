@@ -7,6 +7,7 @@ import com.maveric.authenticationauthorizationservice.feignconsumer.UserServiceC
 import com.maveric.authenticationauthorizationservice.model.UserPrincipal;
 import com.maveric.authenticationauthorizationservice.service.UserService;
 import com.maveric.authenticationauthorizationservice.util.JwtUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class AuthController {
     @Autowired
     UserServiceConsumer userServiceConsumer;
 
-    @CrossOrigin(origins = "http://localhost:8080")
+
     @PostMapping("auth/login")
     public ResponseEntity<AuthResponseDto> authLogin(@Valid @RequestBody AuthRequestDto authRequestDto) throws Exception {
         System.out.println(authRequestDto.getEmail() +"---"+authRequestDto.getPassword());
@@ -58,7 +59,7 @@ public class AuthController {
         return new ResponseEntity<AuthResponseDto>(authResponseDto, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+
     @PostMapping("auth/signup")
     public ResponseEntity<AuthResponseDto> authSignUp(@Valid @RequestBody UserDetailsDto userDetailsDto) {
         ResponseEntity<UserDetailsDto> userDetailsDtoRespEntity = userServiceConsumer.createUser(userDetailsDto);
@@ -75,20 +76,5 @@ public class AuthController {
         }
         return new ResponseEntity<AuthResponseDto>(authResponseDto, HttpStatus.CREATED);
     }
-
-    @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping("auth/validate")
-    public ResponseEntity<GateWayResponseDto> validateToken(@Valid @RequestBody GateWayRequestDto gateWayRequestDto) {
-        System.out.println("Inside validateToken");
-        GateWayResponseDto resp = jwtTokenUtil.validateToken(gateWayRequestDto.getToken());
-        return new ResponseEntity<GateWayResponseDto>(resp, HttpStatus.CREATED);
-    }
-
-    @CrossOrigin(origins = "http://localhost:8080")
-    @GetMapping("/hello")
-    public String sampleAPI() {
-        return "Hello Maveric!";
-    }
-
 
 }
