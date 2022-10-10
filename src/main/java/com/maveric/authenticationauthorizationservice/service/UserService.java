@@ -1,7 +1,5 @@
 package com.maveric.authenticationauthorizationservice.service;
 
-import com.maveric.authenticationauthorizationservice.constants.Type;
-import com.maveric.authenticationauthorizationservice.dto.AuthResponseDto;
 import com.maveric.authenticationauthorizationservice.dto.UserDetailsDto;
 import com.maveric.authenticationauthorizationservice.exceptions.UserNotFoundException;
 import com.maveric.authenticationauthorizationservice.feignconsumer.UserServiceConsumer;
@@ -24,23 +22,17 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         ResponseEntity<UserDetailsDto> userDetailsDto = userServiceConsumer.getUserDetailsByEmail(email);
-        System.out.println(userDetailsDto.getBody());
-        System.out.println(userDetailsDto.getBody().getEmail());
-        System.out.println(userDetailsDto.getBody().getPassword());
         try {
             if(userDetailsDto.getBody()!=null)
             {
-
                 return new UserPrincipal(userDetailsDto.getBody());
             }
             else {
-
                 throw new UserNotFoundException(USER_NOT_FOUND_MESSAGE+email);
             }
         }
         catch(UserNotFoundException ex)
         {
-
             throw new UserNotFoundException(USER_NOT_FOUND_MESSAGE+email);
         }
     }
